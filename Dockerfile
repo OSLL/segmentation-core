@@ -1,5 +1,5 @@
 # parameters
-ARG REPO_NAME="dt-core"
+ARG REPO_NAME="segmentation-core"
 ARG DESCRIPTION="Provides high-level autonomy and fleet-coordination capabilities"
 ARG MAINTAINER="Andrea F. Daniele (afdaniele@duckietown.com)"
 # pick an icon from: https://fontawesome.com/v4.7.0/icons/
@@ -51,6 +51,8 @@ ENV DT_MODULE_TYPE="${REPO_NAME}" \
     DT_LAUNCHER="${LAUNCHER}"
 
 # install apt dependencies
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
+#RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 COPY ./dependencies-apt.txt "${REPO_PATH}/"
 RUN dt-apt-install ${REPO_PATH}/dependencies-apt.txt
 
